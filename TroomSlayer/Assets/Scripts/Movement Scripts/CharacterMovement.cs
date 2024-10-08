@@ -83,7 +83,6 @@ public class CharacterMovement : MonoBehaviour
         Stun(time);
         Vector3 movement = direction * (distance / time);
         this.movement = movement;
-        
-
     }
+
 }
