@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
-        characterMovement.KnockBack(5, Vector3.forward, 0.5f);
+        characterMovement.KnockBack(5, Vector3.forward, 0.25f);
     }
 
 

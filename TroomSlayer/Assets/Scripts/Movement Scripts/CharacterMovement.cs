@@ -18,6 +18,8 @@ public class CharacterMovement : MonoBehaviour
     private float xMovement; 
     private float zMovement;
 
+    private Vector3 movement;
+
 
     // INTS 
 
@@ -40,15 +42,19 @@ public class CharacterMovement : MonoBehaviour
 
     public void Movement(float xDirection, float yDirection)
     {
+        // Regular Character Movement, knockback makes stunTime above 0
+
         if (stunTime <= 0)
         {
             xMovement = xDirection;
             zMovement = yDirection;
-        }
 
-        Vector3 moveDirection = new Vector3(xMovement, 0, zMovement);
-        moveDirection = Vector3.ClampMagnitude(moveDirection, 1f);
-        Vector3 movement = new Vector3(10 * moveSpeed * moveDirection.x * Time.deltaTime, rb.linearVelocity.y, 10 * moveSpeed * moveDirection.z * Time.deltaTime);
+            Vector3 moveDirection = new Vector3(xMovement, 0, zMovement);
+            moveDirection = Vector3.ClampMagnitude(moveDirection, 1f);
+            movement = new Vector3(moveSpeed * moveDirection.x, rb.linearVelocity.y, moveSpeed * moveDirection.z);
+        }
+        
+
         rb.linearVelocity = Vector3.Lerp(transform.position, movement, acceleration);
     }
 
@@ -69,13 +75,14 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    // Creates knockback with specified direction, distance and time. Velocity is determined by the distance and time
+
     public void KnockBack (float distance, Vector3 direction, float time)
     {
         direction.Normalize();
         Stun(time);
-        Vector3 movement = direction * distance / time;
-        xMovement = movement.x;
-        zMovement = movement.z;
+        Vector3 movement = direction * (distance / time);
+        this.movement = movement;
         
 
     }
