@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
 
     // BOOLEANS 
 
-    private void Start()
+    private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
         characterMovement.KnockBack(5, Vector3.forward, 0.25f);
@@ -40,8 +40,8 @@ public class PlayerInput : MonoBehaviour
 
     private void GatherInput()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical"); 
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical"); 
     }
 
     //private void Movement(float xDirection, float yDirection)
