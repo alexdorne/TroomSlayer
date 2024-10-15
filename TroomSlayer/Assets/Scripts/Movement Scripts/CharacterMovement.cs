@@ -35,7 +35,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RotateToDirection();
         stunTime -= Time.fixedDeltaTime; 
     }
 
@@ -58,13 +57,13 @@ public class CharacterMovement : MonoBehaviour
         rb.linearVelocity = Vector3.Lerp(transform.position, movement, acceleration);
     }
 
-    private void RotateToDirection()
+    public void RotateToDirection(Vector3 lookDirection)
     {
         float singleStep = rotationSpeed * Time.deltaTime;
-        Vector3 lookDirection = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 newRotation = Vector3.RotateTowards(transform.forward, lookDirection, singleStep, 0.0f);
         rb.rotation = Quaternion.LookRotation(newRotation);
     }
+
 
     public void Stun(float time)
     {
@@ -84,5 +83,6 @@ public class CharacterMovement : MonoBehaviour
         Vector3 movement = direction * (distance / time);
         this.movement = movement;
     }
+
 
 }

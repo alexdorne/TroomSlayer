@@ -35,7 +35,7 @@ public class AttackHandler : MonoBehaviour
 
     private void Update()
     {
-        hitTrigger.enabled = Input.GetKeyDown(KeyCode.Space);
+        hitTrigger.enabled = Input.GetKeyDown(KeyCode.Mouse1);
     }
 
     private void FixedUpdate()
