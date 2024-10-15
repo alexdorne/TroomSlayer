@@ -3,16 +3,15 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     Transform playerTransform;
-    Vector3 cameraOffset;
+    [SerializeField] Vector3 cameraOffset = new Vector3(0, 8, -7);
     [SerializeField] private float cameraSmoothTime;
 
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        cameraOffset = new Vector3(0, 8, -7);
     }
 
-    void Update()
+    void LateUpdate()
     {
         FollowPlayer();
     }
